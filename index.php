@@ -33,6 +33,10 @@ $app->get('/test', function () {
 	echo $proc->transformToXML($xml);    
 });
 
+$app->post('/test', function () use ($app) {
+	echo($app->request->getBody());
+});
+
 $app->run();
 
 ?>
