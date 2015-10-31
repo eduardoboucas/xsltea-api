@@ -1,7 +1,7 @@
 # XSL Tea API
 
-> A sandbox environment for XSLT
-
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-This is the API layer for [XSL Tea](https://eduardoboucas.com/xsltea) and can be deployed to Heroku.
+> A sandbox environment for XSLT
+
+This is the API layer for [XSL Tea](https://eduardoboucas.com/xsltea) and can be deployed to Heroku. The front-end is hosted on GitHub Pages and can be found [here](https://github.com/eduardoboucas/xsltea).
