@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL);
 // Load the XML source
 $xml = new DOMDocument;
 $xml->load('collection.xml');
