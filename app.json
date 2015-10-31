@@ -1,0 +1,6 @@
+{
+  "name": "XSL Tea API",
+  "description": "A sandbox environment for XSLT",
+  "repository": "https://github.com/eduardoboucas/xsltea-api",
+  "keywords": ["xslt", "xsl", "php"]
+}
