@@ -1,6 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
+require 'lib/XSLTeaParser.class.php';
 
 /**
  *
@@ -18,23 +19,20 @@ ini_set("display_errors", 1);
  */
 
 $app = new \Slim\Slim();
-$app->get('/test', function () {
-	// Load the XML source
-	$xml = new DOMDocument;
-	$xml->load('collection.xml');
+$app->post('/parse', function () use ($app) {
+	$variables = array();
+	parse_str($app->request->getBody(), $variables);
 
-	$xsl = new DOMDocument;
-	$xsl->load('collection.xsl');
+	if (isset($variables['xml']) && isset($variables['xsl'])) {
+		$parser = new XSLTeaParser();
+		$result = $parser->parse($variables['xml'], $variables['xsl']);
 
-	// Configure the transformer
-	$proc = new XSLTProcessor;
-	$proc->importStyleSheet($xsl); // attach the xsl rules
+		if (isset($result['errors'])) {
+			$app->response()->status(500);	
+		}
 
-	echo $proc->transformToXML($xml);    
-});
-
-$app->post('/test', function () use ($app) {
-	echo($app->request->getBody());
+		echo json_encode($result);
+	}
 });
 
 $app->run();
