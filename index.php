@@ -20,6 +20,9 @@ ini_set("display_errors", 1);
 
 $app = new \Slim\Slim();
 $app->post('/parse', function () use ($app) {
+	$response = $app->response();
+	$response->header('Access-Control-Allow-Origin', '*');
+
 	$variables = array();
 	parse_str($app->request->getBody(), $variables);
 
@@ -31,7 +34,7 @@ $app->post('/parse', function () use ($app) {
 			$app->response()->status(500);	
 		}
 
-		echo json_encode($result);
+		$response->write(json_encode($result));
 	}
 });
 
