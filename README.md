@@ -20,10 +20,3 @@
 > A sandbox environment for XSLT
 
 This is the API layer for [XSL Tea](https://eduardoboucas.com/xsltea) and can be deployed to Heroku. The front-end is hosted on GitHub Pages and can be found [here](https://github.com/eduardoboucas/xsltea).
-
-## Features/Roadmap
-
-- [x] Transform XML with XSL
-- [x] Auto-update
-- [x] Persist state of editors in localStorage
-- [ ] Import utilities by drag and drop
