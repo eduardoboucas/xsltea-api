@@ -25,4 +25,5 @@ This is the API layer for [XSL Tea](https://eduardoboucas.com/xsltea) and can be
 
 - [x] Transform XML with XSL
 - [x] Auto-update
+- [x] Persist state of editors in localStorage
 - [ ] Import utilities by drag and drop
