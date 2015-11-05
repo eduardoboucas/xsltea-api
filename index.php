@@ -9,8 +9,8 @@ require 'lib/XSLTeaParser.class.php';
  *
  */
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
 
 /**
  *
@@ -19,6 +19,14 @@ ini_set("display_errors", 1);
  */
 
 $app = new \Slim\Slim();
+
+$app->get('/utilities', function () use ($app) {
+	$response = $app->response();
+	$response->header('Access-Control-Allow-Origin', '*');
+
+	$response->write(file_get_contents('utilities.json'));
+});
+
 $app->post('/parse', function () use ($app) {
 	$response = $app->response();
 	$response->header('Access-Control-Allow-Origin', '*');
@@ -28,7 +36,14 @@ $app->post('/parse', function () use ($app) {
 
 	if (isset($variables['xml']) && isset($variables['xsl'])) {
 		$parser = new XSLTeaParser();
-		$result = $parser->parse($variables['xml'], $variables['xsl']);
+		$parser->setXML($variables['xml']);
+		$parser->setXSL($variables['xsl']);
+		
+		if (isset($variables['import'])) {
+			$parser->setImports($variables['import']);	
+		}
+		
+		$result = $parser->transform();
 
 		if (isset($result['errors'])) {
 			$app->response()->status(500);	
